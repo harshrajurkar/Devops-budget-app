@@ -8,5 +8,5 @@ metadata:
 stringData:
   type: git
   url: https://github.com/harshrajurkar/Devops-budget-app.git
-  password: <ur git hub pat>
+  password: ${{secrets.MY_PAT_TOKEN}}
   username: harshrajurkar

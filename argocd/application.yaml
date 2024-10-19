@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/harshrajurkar/Devops-budget-app.git
     targetRevision: HEAD
-    path: kubernets/
+    path: kubernetes/
   destination:
     server: https://kubernetes.default.svc
     namespace: default

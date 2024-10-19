@@ -7,12 +7,12 @@ spec:
     name: build-and-push
   params:
     - name: url
-      value: "https://github.com/harshrajurkar/Devops-budget-app.git"
+      value: "https://github.com/harshrajurkar/Budget-App-ruby"
     - name: revision
       value: "main"
     - name: IMAGE
       value: "docker.io/harshrajurkar301245/devops-budget-app:latest"
     - name: DOCKERFILE
-      value: "dockerfile" # Ensure this matches the actual filename in the repo
+      value: "dockerfiles/dockerfile"
     - name: DOCKER-CREDENTIALS
       value: "dockerhub-credentials"

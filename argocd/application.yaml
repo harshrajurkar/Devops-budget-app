@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/harshrajurkar/Devops-budget-app.git
+    repoURL: https://github.com/harshrajurkar/Devops-budget-app
     targetRevision: HEAD
     path: kubernetes/
   destination:
@@ -16,3 +16,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
+  sources:
+    - repoURL: https://github.com/harshrajurkar/Budget-App-ruby
+      targetRevision: HEAD
+      path: .
+      directory:
+        recurse: true

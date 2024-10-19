@@ -1,36 +1,42 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: build-and-push-run
+  name: build-and-push
 spec:
+  params:
+    - name: url
+      type: string
+    - name: revision
+      type: string
+    - name: IMAGE
+      type: string
+    - name: DOCKERFILE
+      type: string
+    - name: DOCKER-CREDENTIALS
+      type: string
   tasks:
     - name: clone-repo
       taskRef:
         name: git-clone
       params:
         - name: url
-          value: "https://github.com/harshrajurkar/Devops-budget-app.git"
+          value: $(params.url)
         - name: revision
-          value: "main"
+          value: $(params.revision)
         - name: output
-          value: "/workspace/output" # Specify the output directory
+          value: "/workspace/output"
 
-    - name: build-image
+    - name: build-and-push-image
+      runAfter:
+        - clone-repo
       taskRef:
         name: buildah
       params:
         - name: IMAGE
-          value: "docker.io/harshrajurkar301245/devops-budget-app:latest"
+          value: $(params.IMAGE)
         - name: DOCKERFILE
-          value: "/workspace/output/dockerfiles/dockerfile" # Correct path to the Dockerfile
+          value: $(params.DOCKERFILE)
         - name: CONTEXT
-          value: "/workspace/output" # Set context to the directory containing the cloned repo
-
-    - name: push-image
-      taskRef:
-        name: buildah
-      params:
-        - name: IMAGE
-          value: "docker.io/harshrajurkar301245/devops-budget-app:latest"
+          value: "/workspace/output"
         - name: DOCKER-CREDENTIALS
-          value: "dockerhub-credentials"
+          value: $(params.DOCKER-CREDENTIALS)

@@ -7,27 +7,18 @@ spec:
     - name: DOCKERFILE
       type: string
       description: Path to the Dockerfile
-      default: /workspace/output/dockerfiles/dockerfile # Updated path to reflect the output location
     - name: IMAGE
       type: string
       description: Name of the image to be built
-      default: docker.io/harshrajurkar301245/devops-budget-app:latest
+    - name: CONTEXT
+      type: string
+      description: The build context
+    - name: DOCKER-CREDENTIALS
+      type: string
+      description: Name of the Docker credentials secret
   steps:
-    - name: clone-repo
-      image: alpine/git
-      script: |
-        git clone https://github.com/harshrajurkar/Devops-budget-app.git /workspace/output  # Clone to a specific directory
-
-    - name: verify-clone
-      image: "alpine"
-      script: |
-        echo "Current working directory:"
-        pwd
-        echo "Cloned repository contents:"
-        ls -la /workspace/output  # Show the contents of the cloned repo directory
-
-    - name: build-image
+    - name: build-and-push
       image: quay.io/buildah/stable
       script: |
-        # buildah bud --pull --file $(params.DOCKERFILE) --tag $(params.IMAGE) /workspace/output  # Set the context to the cloned repo
-
+        buildah bud --pull --file $(params.CONTEXT)/$(params.DOCKERFILE) --tag $(params.IMAGE) $(params.CONTEXT)
+        buildah push --creds=$(params.DOCKER-CREDENTIALS) $(params.IMAGE)

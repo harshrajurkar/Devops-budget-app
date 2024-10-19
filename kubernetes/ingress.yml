@@ -16,3 +16,10 @@ spec:
                 name: rails-app-service
                 port:
                   number: 80
+          - path: /hooks
+            pathType: Prefix
+            backend:
+              service:
+                name: el-github-event-listener
+                port:
+                  number: 8080

@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/evans22j/Budget-App.git
+    repoURL: https://github.com/harshrajurkar/Devops-budget-app.git
     targetRevision: HEAD
-    path: apps/myapp
+    path: /
   destination:
     server: https://kubernetes.default.svc
     namespace: default

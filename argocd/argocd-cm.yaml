@@ -7,5 +7,4 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  # Add any custom configurations here if needed
-  # For example, you can configure SSO, repositories, etc.
+  # Add any custom configurations here

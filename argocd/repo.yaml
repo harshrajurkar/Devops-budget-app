@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: private-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: git
+  url: https://github.com/harshrajurkar/Devops-budget-app.git
+  password: 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
+  username: harshrajurkar

@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rails-app
+  name: myapp
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/harshrajurkar/Devops-budget-app.git
+    repoURL: https://github.com/evans22j/Budget-App.git
     targetRevision: HEAD
-    path: kubernetes/
+    path: apps/myapp
   destination:
     server: https://kubernetes.default.svc
     namespace: default

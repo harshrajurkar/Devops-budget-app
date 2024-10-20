@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: build-and-push-image-run
+spec:
+  pipelineRef:
+    name: build-and-push-image
+  workspaces:
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+  params:
+    - name: git-url
+      value: "https://github.com/evans22j/Budget-App.git"
+    - name: git-revision
+      value: "main"
+    - name: image-name
+      value: "harshrajurkar301245/myapp:latest"
